@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import { Component } from "react";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      items: [],
+    };
+    this.addItem = this.addItem.bind(this);
+  }
+
+  addItem() {
+    const newItemValue = document.querySelector('#item').value;
+    this.setState({
+      items: this.state.items.concat(newItemValue),
+    });
+  }
+  
+  render() {
+    return (
+      <div className="App">
+        <div class="AddItem">
+          <input type="text" name="item" id="item" />
+          <button name="button" onClick={this.addItem}>
+            Submit
+          </button>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
