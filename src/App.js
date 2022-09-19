@@ -1,12 +1,17 @@
 import { Component } from "react";
+
+import Overview from "./components/Overview";
 import "./App.css";
+
 
 class App extends Component {
   constructor() {
     super();
+
     this.state = {
       items: [],
     };
+
     this.addItem = this.addItem.bind(this);
   }
 
@@ -20,12 +25,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div class="AddItem">
+        <div className="AddItem">
           <input type="text" name="item" id="item" />
           <button name="button" onClick={this.addItem}>
-            Submit
+            Add
           </button>
         </div>
+        <Overview data={this.state}/>
       </div>
     );
   }
