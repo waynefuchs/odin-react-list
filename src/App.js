@@ -3,35 +3,46 @@ import { Component } from "react";
 import Overview from "./components/Overview";
 import "./App.css";
 
-
 class App extends Component {
   constructor() {
     super();
 
     this.state = {
-      items: [],
+      task: { text: "" },
+      tasks: [],
     };
 
-    this.addItem = this.addItem.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.onSubmitTask = this.onSubmitTask.bind(this);
   }
 
-  addItem() {
-    const newItemValue = document.querySelector('#item').value;
+  handleChange = (event) => {
     this.setState({
-      items: this.state.items.concat(newItemValue),
+      task: {
+        text: event.target.value,
+      },
     });
-  }
-  
+  };
+
+  onSubmitTask = (event) => {
+    event.preventDefault();
+    this.setState({
+      tasks: this.state.tasks.concat(this.state.task),
+      task: { text: "" },
+    });
+  };
+
   render() {
     return (
       <div className="App">
-        <div className="AddItem">
-          <input type="text" name="item" id="item" />
-          <button name="button" onClick={this.addItem}>
-            Add
+        <form>
+          <label htmlFor="taskInput">Enter task</label>
+          <input type="text" id="taskInput" />
+          <button type="submit" onClick={this.onSubmitTask}>
+            Add Task
           </button>
-        </div>
-        <Overview data={this.state}/>
+        </form>
+        <Overview data={this.state} />
       </div>
     );
   }

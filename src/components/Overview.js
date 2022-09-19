@@ -2,8 +2,9 @@ import { Component } from "react";
 
 class Overview extends Component {
   render() {
-    const {items} = this.props.data;
-    const elements = items.map((item, index) => <div key={index}>{item}</div>);
+    const {tasks} = this.props.data;
+    const elements = tasks.map((item, index) => 
+      <div key={index}>{item}</div>);
     return (
       <div>{elements}</div>
     );
