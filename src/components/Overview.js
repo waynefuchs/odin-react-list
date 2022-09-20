@@ -1,14 +1,18 @@
-import { Component } from "react";
+import React from "react";
 
-class Overview extends Component {
-  render() {
-    const {tasks} = this.props.data;
-    const elements = tasks.map((item, index) => 
-      <div key={index}>{item}</div>);
-    return (
-      <div>{elements}</div>
-    );
-  }
-}
+const Overview = (props) => {
+  const { tasks, delFn } = props;
+
+  return (
+    <div>
+      {tasks.map((task, index) => {
+        return <div key={task.id}>
+            {index+1}. {task.text}
+            <button data-delete={task.id} onClick={delFn}>Delete</button>
+          </div>;
+      })}
+    </div>
+  );
+};
 
 export default Overview;
